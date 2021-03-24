@@ -5,13 +5,14 @@ import pyttsx3
 class Speech:
     def __init__(self):
         '''Init '''
+
     def sayText(self,text):
         engine = pyttsx3.init()
         engine.setProperty('rate',125)
         engine.say(text)
         engine.runAndWait()
 
-    def recognizeSpeech(self):
+    def recognizeSpeech(selfm,language):
         recognizer = sr.Recognizer()
 
         with sr.Microphone() as source:
@@ -19,14 +20,22 @@ class Speech:
             audio = recognizer.listen(source)
 
             try:
-                text = recognizer.recognize_google(audio,language='pl-PL')
+                if language == 'PL':
+                    text = recognizer.recognize_google(audio,language='pl-PL')
+                else:
+                    text = recognizer.recognize_google(audio,language='en-US')
+
                 print('You said: {}'.format(text))
                 self.sayText(text)
+
+            except sr.RequestError as e:
+                print("Could not request results from Google Speech Recognition service")
             except:
-                print('Could not recognize your voice')
+                print('Could not recognize your voice or tts failed')
 
 def main():
-    speech_recognition = Speech().recognizeSpeech()
+    language = input('Select language:')
+    speech_recognition = Speech().recognizeSpeech(language)
 
 if __name__ == "__main__":
     main()
