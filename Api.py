@@ -1,13 +1,16 @@
-from flask import Flask
+from flask import Flask, request,jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
 
-@app.route("/")
+
+@app.route("/user/create-song")
 def hello():
-  return "Hello World!"
+   return jsonify(request.args.get('data'))
 
 if __name__ == "__main__":
-  app.run()
+  CORS(app.run())
 
-#https://www.stanleyulili.com/powershell/solution-to-running-scripts-is-disabled-on-this-system-error-on-powershell/
-#https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-python-and-flask-development-environment
+
+#CORS
+# https://dev.to/matheusguimaraes/fast-way-to-enable-cors-in-flask-servers-42p0
