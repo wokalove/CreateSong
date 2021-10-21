@@ -1,6 +1,8 @@
 import speech_recognition as sr
 import pyttsx3
 import os
+from langdetect import detect
+from iso639 import languages
 
 class SpeechRecognizer:
     def __init__(self):
@@ -11,6 +13,7 @@ class SpeechRecognizer:
         engine.setProperty('rate',125)
         engine.say(text)
         engine.runAndWait()
+        
     def languageDetection(self):
         '''TODO'''
     def recognizeFromAudio(self,audio_file):
@@ -20,7 +23,9 @@ class SpeechRecognizer:
             audio = r.record(source)
         try:
             s = r.recognize_google(audio,language='pl-PL')
-            print("Text:",s)
+
+            language = detect(s)
+            print("Text in ",language)
 
             words = s.split()
             count_words = len(words)
