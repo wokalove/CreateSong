@@ -4,7 +4,9 @@ import requests
 class NotesParsing:
 
     def get_html_template(self):
+
         URL = 'https://www.liutaiomottola.com/formulae/freqtab.htm'
+        # URL = 'https://pages.mtu.edu/~suits/notefreqs.html'
         content = requests.get(URL)
         soup = BeautifulSoup(content.text, 'html.parser')
 
@@ -22,7 +24,7 @@ class NotesParsing:
             frequencies.append(notes_details[::7])
 
             # notes_filtered = [i for i in notes if 'Note Name' not in i]
-            print(notes[0][1])
+            print(notes[0])
 
 
 
