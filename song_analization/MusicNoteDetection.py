@@ -1,5 +1,3 @@
-#install these libraries ----
-
 import numpy as np
 import math
 import wave

@@ -1,37 +1,37 @@
 from bs4 import BeautifulSoup 
-import requests
+import requests 
+import re
 
 class NotesParsing:
 
-    def get_html_template(self):
+    def get_html_template(self, url):
+        r = requests.get(url)
+        html_content = r.text
 
-        URL = 'https://www.liutaiomottola.com/formulae/freqtab.htm'
-        # URL = 'https://pages.mtu.edu/~suits/notefreqs.html'
-        content = requests.get(URL)
-        soup = BeautifulSoup(content.text, 'html.parser')
+        soup = BeautifulSoup(html_content, "html.parser")
 
-        rows = soup.find('table',{ "class" : "table-sm"}) # Extract and return first occurrence of tr
-        columns = rows.find_all('td')
-        notes_details =[]
         notes = []
-        octaves = []
         frequencies = []
+        
+        for tr in soup.find_all('tr')[1:]:
+            tds = tr.find_all('td')
+            notes.append(tds[0].text.strip() + tds[1].text.strip())
+            frequencies.append(tds[2].text.strip())
+            
+        self.saveOutputToFile(notes, frequencies)
 
-        for column in columns:
-            notes_details.append(column.get_text().strip())
-            notes.append(notes_details[::5])
-            octaves.append(notes_details[::6])
-            frequencies.append(notes_details[::7])
-
-            # notes_filtered = [i for i in notes if 'Note Name' not in i]
-            print(notes[0])
-
-
-
-        # print(notes)
+    def saveOutputToFile(self, notes, freq):
+        notes = [x for x in notes if x]
+        freq = [x for x in freq if x]
+        print(notes, freq)
         
 
 
-
+URL = 'https://www.liutaiomottola.com/formulae/freqtab.htm'
 notes_parsing = NotesParsing()
-notes_parsing.get_html_template()
+notes_parsing.get_html_template(URL)
+
+
+
+
+    
