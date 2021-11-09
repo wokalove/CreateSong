@@ -47,13 +47,21 @@ class SpeechRecognizer:
         except Exception as e:
             print("Exception:" +str(e))
 
-    def recognizeSpeech(selfm,language):
+    def recognizeLiveFromMicrophone(selfm):
         recognizer = sr.Recognizer()
 
         with sr.Microphone() as source:
             print('Speak anything:')
             audio = recognizer.listen(source)
+            engine = pyttsx3.init()
+  
+            # We can use file extension as mp3 and wav, both will work
+            engine.save_to_file(audio, 'new_song.wav')
 
+            print('Recognizing language...')
+            language  = LanguageRecognition().recognizeLanguageFromAudio(audio)
+            print('Recognized language:', language)
+            
             try:
                 if language == 'PL':
                     text = recognizer.recognize_google(audio,language='pl-PL')
@@ -63,13 +71,16 @@ class SpeechRecognizer:
                 print('You said: {}'.format(text))
                 self.sayText(text)
 
+                
+
             except sr.RequestError as e:
                 print("Could not request results from Google Speech Recognition service")
             except:
-                print('Could not recognize your voice or tts failed')
+                print('NOTE: Detected silence is considered as the end of recording!')
     def textTransciption(self,file_name):
          detected_lang = LanguageRecognition().recognizeLanguageFromAudio(file_name)
          SpeechRecognizer().textTranscriptionFromAudio(file_name,detected_lang)
+    
 
 # def main():
 #     # language = input('Select language:')
@@ -81,3 +92,7 @@ class SpeechRecognizer:
 
 # if __name__ == "__main__":
 #     main()
+
+# TODO
+# SpeechRecognizer().recognizeLiveFromMicrophone()
+
