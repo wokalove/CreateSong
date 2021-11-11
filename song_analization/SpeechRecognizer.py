@@ -2,7 +2,6 @@ import speech_recognition as sr
 import pyttsx3
 import os
 from LanguageRecognition import LanguageRecognition
-
 import string
 from langcodes import *
 
@@ -33,16 +32,21 @@ class SpeechRecognizer:
 
             words_limit = 6
             verse = words[:words_limit]
-
+            whole_lyrics = []
             counter = 0
+
             for w in range(0, count_words):
                 if(w % 6):
                     verse = words[counter:counter+words_limit]
+                    verse_string= ' '.join(verse)
                     if not verse:
                         break
-                    print(verse)
+                    print(verse_string)
+                    whole_lyrics.append(verse_string)
                     counter += 6
-                    
+                
+            return '\n'.join(whole_lyrics)
+            
 
         except Exception as e:
             print("Exception:" +str(e))
@@ -72,26 +76,24 @@ class SpeechRecognizer:
                 self.sayText(text)
 
                 
-
             except sr.RequestError as e:
                 print("Could not request results from Google Speech Recognition service")
             except:
                 print('NOTE: Detected silence is considered as the end of recording!')
-    def textTransciption(self,file_name):
-         detected_lang = LanguageRecognition().recognizeLanguageFromAudio(file_name)
-         SpeechRecognizer().textTranscriptionFromAudio(file_name,detected_lang)
+
+    def textTransciption(self,file_name, detected_lang):
+        #  detected_lang = LanguageRecognition().recognizeLanguageFromAudio(file_name)
+         return SpeechRecognizer().textTranscriptionFromAudio(file_name,detected_lang)
+         
     
 
-# def main():
-#     # language = input('Select language:')
-#     # speech_recognition = Speech().recognizeSpeech(language)
-#     path = os.getcwd()
-#     file_name = path + "/wokal.wav"
+# path = os.getcwd()
+# file_name = path + "/music_files/wokal.wav"
+# speech_recognition = SpeechRecognizer().textTranscriptionFromAudio(file_name,"pl")
+# print(type(speech_recognition),speech_recognition)
 
    
 
-# if __name__ == "__main__":
-#     main()
 
 # TODO
 # SpeechRecognizer().recognizeLiveFromMicrophone()

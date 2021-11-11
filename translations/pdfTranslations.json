@@ -1,0 +1,16 @@
+{
+    "languages":
+    {
+        "pl-pl":
+        {
+            "notes": "Rozpoznane dźwięki",
+            "lyrics": "Słowa piosenki"
+        },
+        "en-en":
+        {
+            "notes": "Recognized notes",
+            "lyrics": "Lyrics of song"
+        }
+
+    }
+}
