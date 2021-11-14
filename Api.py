@@ -1,14 +1,22 @@
 from flask import Flask, request,jsonify
 from flask_cors import CORS
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__)))
+from song_analization.MusicFile import ExportJson
+
 
 app = Flask(__name__)
 
-
-@app.route("/user/create-song", methods=['POST', 'OPTIONS'])
+# @app.route("/user/create-song", methods=['POST', 'OPTIONS'])
+@app.route("/user/create-song", methods=['POST'])
 def hello():
   #  return jsonify("Bu")
-   content = request.get_json(silent=True)
-   print(content)
+  #  content = request.get_json(silent=True)
+   
+   if request.method == 'POST':
+     print(request.files['file'])
+     ExportJson().get_data_from_request(request.files['file'])
    return "json got"
   
 
