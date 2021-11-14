@@ -3,11 +3,13 @@
     {
         "pl-pl":
         {
+            "default_title":"Nowa piosenka",
             "notes": "Rozpoznane dźwięki",
             "lyrics": "Słowa piosenki"
         },
-        "en-en":
+        "en-us":
         {
+            "default_title":"New song",
             "notes": "Recognized notes",
             "lyrics": "Lyrics of song"
         }

@@ -16,7 +16,7 @@ class ShowSongAnalization:
 
 if __name__ == "__main__":
     path = os.getcwd()
-    file_name = path + "/music_files/wokal2.wav"
+    file_name = path + "/music_files/polska.wav"
     title = "New song"
     ShowSongAnalization().combineSpeechAndNotesRecognition(file_name, title)
     

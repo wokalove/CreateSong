@@ -24,7 +24,7 @@ class LanguageRecognition:
             alternative_language_codes=[second_lang],
         )
 
-        print("Waiting for operation to complete...")
+        print("Waiting for recognizing language...")
         response = client.recognize(config=config, audio=audio)
 
 
