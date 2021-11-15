@@ -3,22 +3,26 @@ from flask_cors import CORS
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__)))
-from song_analization.MusicFile import ExportJson
+from song_analization.MusicFile import MusicFile
 
 
 app = Flask(__name__)
 
 # @app.route("/user/create-song", methods=['POST', 'OPTIONS'])
 @app.route("/user/create-song", methods=['POST'])
-def hello():
-  #  return jsonify("Bu")
+def create_song():
   #  content = request.get_json(silent=True)
    
-   if request.method == 'POST':
-     print(request.files['file'])
-     ExportJson().get_data_from_request(request.files['file'])
-   return "json got"
-  
+   if request.method == 'POST': 
+     MusicFile().save_file(request)
+    #  with open('myfile.wav', mode='bx') as f:
+    #       f.write(request.get_data())
+    
+    #  print(request.files['audio'])
+    #  print(request.args.get['record'])
+    #  ExportJson().get_data_from_request(request.files['file'])
+   return "Success"
+
 
 @app.after_request
 def after_request(response):

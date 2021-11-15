@@ -18,7 +18,7 @@ class LanguageRecognition:
 
         config = speech.RecognitionConfig(
             encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
-            sample_rate_hertz=44100,
+            sample_rate_hertz=48000,
             audio_channel_count=2,
             language_code=first_lang,
             alternative_language_codes=[second_lang],
