@@ -12,15 +12,8 @@ app = Flask(__name__)
 @app.route("/user/create-song", methods=['POST'])
 def create_song():
   #  content = request.get_json(silent=True)
-   
    if request.method == 'POST': 
      MusicFile().save_file(request)
-    #  with open('myfile.wav', mode='bx') as f:
-    #       f.write(request.get_data())
-    
-    #  print(request.files['audio'])
-    #  print(request.args.get['record'])
-    #  ExportJson().get_data_from_request(request.files['file'])
    return "Success"
 
 

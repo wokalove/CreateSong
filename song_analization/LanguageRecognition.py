@@ -4,12 +4,13 @@ import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:\googleKey\mytone-330517-71e1f6a21c36.json"
 
 class LanguageRecognition:
-    def recognizeLanguageFromAudio(self, speech_file):
+    def recognizeLanguageFromAudio(self,sample, speech_file):
 
         client = speech.SpeechClient()
 
-        first_lang = "en-US"
+        first_lang = "en-gb"
         second_lang = "pl"
+        third_lang = "es-us"
 
         with open(speech_file, "rb") as audio_file:
             content = audio_file.read()
@@ -18,10 +19,10 @@ class LanguageRecognition:
 
         config = speech.RecognitionConfig(
             encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
-            sample_rate_hertz=48000,
+            sample_rate_hertz=sample,
             audio_channel_count=2,
             language_code=first_lang,
-            alternative_language_codes=[second_lang],
+            alternative_language_codes=[second_lang,third_lang],
         )
 
         print("Waiting for recognizing language...")
@@ -33,7 +34,7 @@ class LanguageRecognition:
             language_code = result.language_code
             # print("-" * 20)
             # print(u"First alternative of result {}: {}".format(i, alternative))
-            # print("Language Code: ",language_code)
+            print("Language Code: ",language_code)
             # print(u"Transcript: {}".format(alternative.transcript))
         return language_code
 

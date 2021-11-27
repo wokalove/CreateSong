@@ -49,7 +49,7 @@ class SpeechRecognizer:
             
 
         except Exception as e:
-            print("Exception:" +str(e))
+            print("Exception in SpeechRecognizer! " +str(e))
 
     def recognizeLiveFromMicrophone(selfm):
         recognizer = sr.Recognizer()

@@ -7,7 +7,7 @@ from LanguageRecognition import LanguageRecognition
 class ShowSongAnalization:
     def combineSpeechAndNotesRecognition(self, audio_file, title):
         sr = SpeechRecognizer()
-        detected_lang = LanguageRecognition().recognizeLanguageFromAudio(audio_file)
+        detected_lang = LanguageRecognition().recognizeLanguageFromAudio(48000,audio_file)
         text = sr.textTransciption(audio_file, detected_lang)
         notes = MusicNoteDetection().note_detect(audio_file)
         
