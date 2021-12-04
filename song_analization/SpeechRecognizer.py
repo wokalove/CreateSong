@@ -24,7 +24,7 @@ class SpeechRecognizer:
             audio = r.record(source)
         try:
             s = r.recognize_google(audio,language=detected_lang)
-
+            
             print("Language:",Language.get(detected_lang).autonym())
 
             words = s.split()

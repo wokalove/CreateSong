@@ -10,7 +10,7 @@ class LanguageRecognition:
 
         first_lang = "en-gb"
         second_lang = "pl"
-        third_lang = "es-us"
+        third_lang = "es"
 
         with open(speech_file, "rb") as audio_file:
             content = audio_file.read()

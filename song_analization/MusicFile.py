@@ -24,9 +24,8 @@ class MusicFile:
         while(Path(file_in_dir) == True):
           file_name = 'myfile'+str(random_number)+'.wav'
           file_in_dir = self.dir_wav_uploads+file_name
-          print("jest")
         
-        print("nie ma")
+        
         with open(file_in_dir, mode='bx') as file:
           file.write(request.get_data())
           file.close()
@@ -34,11 +33,15 @@ class MusicFile:
         recorded_file = path + "/music_files/"+file_name
         ShowSongAnalization().combineSpeechAndNotesRecognition(recorded_file, 'New song')
 
-    # def checkIfFileNameExists(self,path):
-    #   new_file = Path(path)
-    #   if(new_file):
-    #     print("hehe")
-    #     return True
+    def checkIfFileNameExists(self,path):
+      exists = False
+
+      if os.path.isfile(path):
+        exists = True
+      else:
+        exists = False
+
+      return exists
       
 
 

@@ -14,6 +14,8 @@ class MusicNoteDetection:
 	def find_nearest(array,value):
 		idx = (np.abs(array-value)).argmin()
 		return array[idx]
+	def check_if_proper_data(notes, freq):
+		return True
 
 ############################## Initialize ##################################
 
@@ -43,15 +45,17 @@ class MusicNoteDetection:
 		sound = np.zeros(file_length)
 		mean_square = []
 		sound_square = np.zeros(file_length)
+
+		#reading frames from wav file
 		for i in range(file_length):
 			data = sound_file.readframes(1)
 			data = struct.unpack("<h", data[0:2])
 			sound[i] = int(data[0])
 			
-		sound = np.divide(sound, float(2**15))	# Normalize data in range -1 to 1
-
-
-		######################### DETECTING SILENCE ##################################
+		# Normalize data in range -1 to 1 need for data comparison and analization
+		sound = np.divide(sound, float(2**15))	
+		
+		#detecting silence
 
 		sound_square = np.square(sound)
 		frequency = []
@@ -64,9 +68,10 @@ class MusicNoteDetection:
 			s = 0.0
 			j = 0
 			while(j<=window_size):
+				#fourier series
 				s = s + sound_square[i+j]
 				j = j + 1	
-		# detecting the silence waves
+		# detecting the silence waves (threesold as max range)
 			if s < threshold:
 				if(i-k>window_size*4):
 					dft = np.array(dft) # applying fourier transform function

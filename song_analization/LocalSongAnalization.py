@@ -16,13 +16,10 @@ class ShowSongAnalization:
 if __name__ == "__main__":
     path = os.getcwd()
     eng_sample = 44100
-    es_sample = 32000
+    pl_sample = 44100
 
     file_name_eng = path + "/test_music_files/english.wav"
-    file_name_es = path + "/test_music_files/espanol.wav"
+    file_name_pl = path + "/test_music_files/polska.wav"
     title = "New song"
-
-    # ShowSongAnalization().combineSpeechAndNotesRecognition(file_name_eng, title, eng_sample)
-    
-    ShowSongAnalization().combineSpeechAndNotesRecognition(file_name_es, title, es_sample)
+    ShowSongAnalization().combineSpeechAndNotesRecognition(file_name_eng, title, eng_sample)
     
