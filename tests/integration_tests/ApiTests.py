@@ -1,10 +1,27 @@
 import requests
+from flask import Flask
 
-def test_get_users_status(self):
-    expected_result = { "user1": "active",  "user2": "inactive" }
-    r = requests.get('https://localhost:8080/get_users_status', auth=('user', 'pass'))
-    assert r.status_code is 200
-    self.write_json(expected_result, r.json())
+import unittest
 
-# https://stackoverflow.com/questions/55470731/integration-test-in-python
-# https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/testing.html
+
+app = Flask(__name__)
+
+class TestIntegrations(unittest.TestCase):
+    def setUp(self):
+        self.app = app.test_client()
+    
+    # def test_route(self):
+    #     response = self.app.get('/user/create-song')
+    #     self.assertEqual(response.status_code, 200)
+
+    def test_passed_data(self):
+        response = self.app.get('/user/create-song')
+        response_data = isinstance(response.get_data(),(bytes, bytearray))
+
+        assert 'File is binary'
+
+    
+
+
+if __name__=="__main__":
+    unittest.main()        
