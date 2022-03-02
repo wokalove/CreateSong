@@ -4,9 +4,7 @@ import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__)))
 from song_analization.MusicFile import MusicFile
-
 from flask import Flask
-
 import unittest
 
 
