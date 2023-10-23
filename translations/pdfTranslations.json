@@ -1,0 +1,30 @@
+{
+    "languages":
+    {
+        "pl-pl":
+        {
+            "default_title":"Nowa piosenka",
+            "notes": "Rozpoznane dźwięki",
+            "lyrics": "Słowa piosenki"
+        },
+        "en-us":
+        {
+            "default_title":"New song",
+            "notes": "Recognized notes",
+            "lyrics": "Lyrics of song"
+        },
+        "en-gb":
+        {
+            "default_title":"New song",
+            "notes": "Recognized notes",
+            "lyrics": "Lyrics of song"
+        },
+        "es-us":
+        {
+            "default_title":"Nueva canción",
+            "notes": "Notas reconocidas",
+            "lyrics": "Letra"
+        }
+
+    }
+}
